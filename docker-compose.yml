@@ -6,3 +6,5 @@ services:
         container_name: backend-blog
         ports:
           - 3000:3000
+        depends_on:
+        - database
