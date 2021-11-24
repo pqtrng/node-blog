@@ -4,6 +4,7 @@ start:
 clean:
 	docker rm node-blog -vf || true
 	docker image rm node-blog-image || true
+	docker rm mongo-blog -vf || true
 	docker image ls
 
 build: clean
@@ -12,12 +13,15 @@ build: clean
 run: build
 	docker run -v `pwd`:/app:ro -d -v /app/node_modules --env-file ./.env -p 3000:3000 --name node-blog node-blog-image
 
-bash:
+bash-node:
 	docker inspect -f '{{ .Mounts }}' node-blog
 	docker exec -it node-blog bash
 
+bash-mongo:
+	docker exec -it mongo-blog mongo -u "pqtrng" -p "devpassword"
+
 down:
-	docker-compose down -v
+	docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
 
 dev:
 	docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build

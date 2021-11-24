@@ -8,3 +8,14 @@ services:
           - 3000:3000
         environment:
           - PORT=3000
+    mongo:
+        image: mongo
+        container_name: mongo-blog
+        environment:
+          - MONGO_INITDB_ROOT_USERNAME=pqtrng
+          - MONGO_INITDB_ROOT_PASSWORD=devpassword 
+        volumes:
+          - mongo-db:/data/db
+
+volumes:
+    mongo-db:
