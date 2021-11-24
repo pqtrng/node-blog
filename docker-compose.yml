@@ -1,15 +1,10 @@
 version: "3"
 services:
-    node-blog: 
-      build: .
-      image: node-blog-image
-      container_name: node-blog
-      ports:
+    node-blog:
+        build: .
+        image: node-blog-image
+        container_name: node-blog
+        ports:
           - 3000:3000
-      volumes:
-          - ./:/app
-          - /app/node_modules
-      environment:
+        environment:
           - PORT=3000
-      # env_file:
-      #     - ./.env

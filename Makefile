@@ -13,11 +13,14 @@ run: build
 	docker run -v `pwd`:/app:ro -d -v /app/node_modules --env-file ./.env -p 3000:3000 --name node-blog node-blog-image
 
 bash:
-	docker inspect -f '{{ .Mounts }}' $(docker ps -aqf "name=^node-blog?")
+	docker inspect -f '{{ .Mounts }}' node-blog
 	docker exec -it node-blog bash
 
 down:
 	docker-compose down -v
 
 dev:
-	docker-compose up -d --build
+	docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+
+prod:
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
