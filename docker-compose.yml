@@ -1,16 +1,16 @@
 version: "3"
 services:
-    node-blog:
+    backend:
         build: .
-        image: node-blog-image
-        container_name: node-blog
+        image: backend-image
+        container_name: backend-blog
         ports:
           - 3000:3000
         environment:
           - PORT=3000
-    mongo:
+    database:
         image: mongo
-        container_name: mongo-blog
+        container_name: database-blog
         environment:
           - MONGO_INITDB_ROOT_USERNAME=pqtrng
           - MONGO_INITDB_ROOT_PASSWORD=devpassword 
