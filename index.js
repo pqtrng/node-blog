@@ -1,16 +1,29 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const {
+  DATABASE_NAME,
+  DATABASE_USER,
+  DATABASE_PASSWORD,
+  DATABASE_IP,
+  DATABASE_PORT,
+} = require("./config/config");
 
 const app = express();
+
+const mongoURL = `${DATABASE_NAME}://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_IP}:${DATABASE_PORT}/?authSource=admin`;
+
 mongoose
-  .connect("mongodb://pqtrng:devpassword@database:27017/?authSource=admin")
-  .then(() => console.log("Successfully connected to DB"))
+  .connect(mongoURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Successfully connected to Database."))
   .catch((e) => console.log(e));
 
 app.get("/", (req, res) => {
-  res.send("<h2>Hello, World.</h2>");
+  res.send("<h2>Hello, World!</h2>");
 });
 
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}`));

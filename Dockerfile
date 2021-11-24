@@ -13,6 +13,4 @@ RUN if [ "$NODE_ENV" = "development" ]; \
 
 COPY . .
 
-EXPOSE $PORT
-
 CMD ["node", "index.js"]
