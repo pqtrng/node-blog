@@ -9,7 +9,7 @@ const {
 } = require("./config/config");
 
 const postRouter = require("./routes/postRoutes");
-
+const userRouter = require("./routes/userRoutes");
 const app = express();
 
 const mongoURL = `${DATABASE_NAME}://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_IP}:${DATABASE_PORT}/?authSource=admin`;
@@ -37,6 +37,7 @@ app.get("/", (req, res) => {
 
 // localhost:3000/api/v1/posts
 app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/users", userRouter);
 
 const port = process.env.PORT || 3000;
 
