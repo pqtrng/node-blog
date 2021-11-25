@@ -1,3 +1,8 @@
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
 start:
 	npm run dev
 
@@ -5,6 +10,7 @@ clean:
 	docker rm backend-blog -vf || true
 	docker image rm backend-image || true
 	docker rm database-blog -vf || true
+	docker rm auth-blog -vf || true
 	docker image ls
 
 build: clean
@@ -19,6 +25,9 @@ bash-node:
 
 bash-mongo:
 	docker exec -it database-blog mongo -u "pqtrng" -p "devpassword"
+
+bash-redis:
+	docker exec -it auth-blog bash
 
 down:
 	docker-compose -f docker-compose.yml -f docker-compose.dev.yml down

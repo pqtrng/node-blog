@@ -4,4 +4,7 @@ module.exports = {
   DATABASE_PORT: process.env.DATABASE_PORT,
   DATABASE_USER: process.env.DATABASE_USER,
   DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
+  AUTH_URL: process.env.AUTH_URL,
+  AUTH_PORT: process.env.AUTH_PORT,
+  SESSION_SECRET: process.env.AUTH_SESSION_SECRET,
 };

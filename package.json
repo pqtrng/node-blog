@@ -21,8 +21,11 @@
   "homepage": "https://github.com/pqtrng/node-blog#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-redis": "^6.0.0",
     "express": "^4.17.1",
-    "mongoose": "^6.0.13"
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.13",
+    "redis": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

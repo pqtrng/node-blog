@@ -1,8 +1,7 @@
 version: "3"
 services:
   backend:
-    build: 
-      context: .
+    build:
       args:
         NODE_ENV: development
     env_file:
@@ -13,12 +12,10 @@ services:
     command: npm run dev
 
   database:
-      image: mongo
-      container_name: database-blog
-      volumes:
-        - mongo-db:/data/db
-      env_file:
+    env_file:
       - ./.env
-
-volumes:
-    mongo-db:
+  
+  auth:
+    env_file:
+      - ./.env
+    
