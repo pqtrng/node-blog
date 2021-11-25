@@ -8,6 +8,8 @@ const {
   DATABASE_PORT,
 } = require("./config/config");
 
+const postRouter = require("./routes/postRoutes");
+
 const app = express();
 
 const mongoURL = `${DATABASE_NAME}://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_IP}:${DATABASE_PORT}/?authSource=admin`;
@@ -27,9 +29,14 @@ const connectWithRetry = () => {
 
 connectWithRetry();
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("<h2>Hello, World!</h2>");
 });
+
+// localhost:3000/api/v1/posts
+app.use("/api/v1/posts", postRouter);
 
 const port = process.env.PORT || 3000;
 
