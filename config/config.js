@@ -6,5 +6,5 @@ module.exports = {
   DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
   AUTH_URL: process.env.AUTH_URL,
   AUTH_PORT: process.env.AUTH_PORT,
-  SESSION_SECRET: process.env.AUTH_SESSION_SECRET,
+  SESSION_SECRET: process.env.SESSION_SECRET,
 };

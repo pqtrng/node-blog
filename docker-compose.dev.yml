@@ -14,8 +14,4 @@ services:
   database:
     env_file:
       - ./.env
-  
-  auth:
-    env_file:
-      - ./.env
     

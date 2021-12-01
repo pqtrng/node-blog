@@ -3,21 +3,21 @@ services:
   backend:
     build: 
       context: .
-    image: backend-image
-    container_name: backend-blog
+    image: ${BACKEND_IMAGE}
+    container_name: ${BACKEND_CONTAINER}
     ports:
-      - 3000:3000
+      - ${PORT}:${PORT}
     depends_on:
       - database
   database:
     image: mongo
-    container_name: database-blog
+    container_name: ${DATABASE_CONTAINER}
     volumes:
-      - mongodb:/data/db
+      - mongo-db:/data/db
   
   auth:
     image: redis
-    container_name: auth-blog
+    container_name: ${AUTH_CONTAINER}
 
 volumes:
-  mongodb:
+  mongo-db:
