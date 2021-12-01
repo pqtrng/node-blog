@@ -1,5 +1,8 @@
 version: "3"
 services:
+  nginx:
+    ports:
+      - 3000:80
   backend:
     build:
       args:
@@ -9,6 +12,7 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
+      - ./nginx/nginx-error.log:/var/log/nginx/error.log
     command: npm run dev
 
   database:

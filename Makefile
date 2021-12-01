@@ -7,10 +7,8 @@ start:
 	npm run dev
 
 clean:
-	docker rm $(BACKEND_CONTAINER) -vf || true
-	docker image rm $(BACKEND_IMAGE) || true
-	docker rm $(DATABASE_CONTAINER) -vf || true
-	docker rm $(AUTH_CONTAINER) -vf || true
+	docker image prune -f
+	docker volume prune -f
 	docker image ls
 
 build: clean
@@ -37,6 +35,9 @@ down-v:
 
 dev:
 	docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+
+dev-scale:
+	docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --scale ${BACKEND_SERVICE}=2
 
 log: dev
 	docker logs $(BACKEND_CONTAINER) -f

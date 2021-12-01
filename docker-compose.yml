@@ -1,23 +1,22 @@
 version: "3"
 services:
-  backend:
-    build: 
-      context: .
-    image: ${BACKEND_IMAGE}
-    container_name: ${BACKEND_CONTAINER}
+  nginx:
+    image: nginx:stable-alpine
     ports:
-      - ${PORT}:${PORT}
+      - 3000:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+  backend:
+    build: .
     depends_on:
       - database
   database:
     image: mongo
-    container_name: ${DATABASE_CONTAINER}
     volumes:
       - mongo-db:/data/db
   
   auth:
     image: redis
-    container_name: ${AUTH_CONTAINER}
 
 volumes:
   mongo-db:
